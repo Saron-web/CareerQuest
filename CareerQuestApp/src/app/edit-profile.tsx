@@ -1,54 +1,35 @@
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
-import { useState } from 'react';
 
-export default function ProfileScreen() {
-  const [language, setLanguage] = useState('English');
-
-  const handleLanguageChange = () => {
-    Alert.alert(
-      'Select Language',
-      '',
-      [
-        { text: 'English', onPress: () => setLanguage('English') },
-        { text: 'French', onPress: () => setLanguage('French') },
-        { text: 'Spanish', onPress: () => setLanguage('Spanish') },
-        { text: 'Cancel', style: 'cancel' },
-      ]
-    );
-  };
-
-  const handleAbout = () => {
-    Alert.alert(
-      'About CareerQuestApp',
-      'CareerQuestApp helps you explore careers, build your profile, and prepare for your future.'
-    );
-  };
-
-  const handleLogout = () => {
-    Alert.alert('Logged Out', 'You have been logged out.');
-  };
-
+export default function EditProfileScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Text style={styles.title}>My Profile</Text>
+          <Text style={styles.title}>Edit Profile</Text>
         </View>
 
-        <View style={styles.menu}>
-          <TouchableOpacity style={styles.menuItem} onPress={handleLanguageChange}>
-            <Text style={styles.menuText}>Language: {language}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.menuItem} onPress={handleAbout}>
-            <Text style={styles.menuText}>About CareerQuestApp</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
-            <Text style={[styles.menuText, { color: 'red' }]}>Log Out</Text>
-          </TouchableOpacity>
+        <View style={styles.avatarContainer}>
+          <Image 
+            source={{ uri: 'https://www.shutterstock.com/image-photo/portrait-headshot-confident-positive-woman-260nw-2734807251.jpg' }} 
+            style={styles.avatar} 
+          />
         </View>
+
+        <View style={styles.form}>
+          {['First Name', 'Last Name', 'Username', 'Email', 'Phone Number', 'Birth', 'Gender'].map(
+            (label, index) => (
+              <View key={index} style={styles.inputGroup}>
+                <Text style={styles.label}>{label}</Text>
+                <TextInput style={styles.input} placeholder={label} />
+              </View>
+            )
+          )}
+        </View>
+
+        <TouchableOpacity style={styles.passwordButton}>
+          <Text style={styles.passwordText}>Change Password</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -56,17 +37,27 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
-  header: {
-    alignItems: 'center',
-    paddingVertical: 10,
-  },
+  header: { alignItems: 'center', paddingVertical: 10 },
   title: { fontSize: 20, fontWeight: 'bold' },
-  menu: { marginTop: 20 },
-  menuItem: {
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+  avatarContainer: { alignItems: 'center', marginVertical: 20 },
+  avatar: { width: 100, height: 100, borderRadius: 50 },
+  form: { paddingHorizontal: 20 },
+  inputGroup: { marginBottom: 15 },
+  label: { fontWeight: '600', marginBottom: 5 },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
   },
-  menuText: { fontSize: 16 },
+  passwordButton: {
+    backgroundColor: '#007AFF',
+    marginHorizontal: 20,
+    marginVertical: 30,
+    paddingVertical: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  passwordText: { color: '#fff', fontWeight: 'bold' },
 });
