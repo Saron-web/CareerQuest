@@ -1,6 +1,6 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { router } from 'expo-router';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   return (
@@ -14,7 +14,7 @@ export default function ProfileScreen() {
           <Image source={{ uri: 'https://www.shutterstock.com/image-photo/portrait-headshot-confident-positive-woman-260nw-2734807251.jpg' }} style={styles.avatar} />
           <Text style={styles.name}>Sabrina Aryan</Text>
           <Text style={styles.email}>SabrinaAry208@gmail.com</Text>
-          <TouchableOpacity style={styles.editButton} onPress={() => router.push('/edit-profile')}>
+          <TouchableOpacity style={styles.editButton} onPress={() => router.push('/profile')}>
             <Text style={styles.editText}>Edit Profile</Text>
           </TouchableOpacity>
         </View>
@@ -24,11 +24,6 @@ export default function ProfileScreen() {
             'Favourites',
             'Downloads',
             'Languages',
-            'Location',
-            'Subscription',
-            'Display',
-            'Clear Cache',
-            'Clear History',
             'Log Out',
           ].map((item, index) => (
             <TouchableOpacity key={index} style={styles.menuItem}>
