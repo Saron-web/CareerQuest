@@ -12,9 +12,9 @@ export default function ProfileScreen() {
 
         <View style={styles.profileSection}>
           <Image source={{ uri: 'https://www.shutterstock.com/image-photo/portrait-headshot-confident-positive-woman-260nw-2734807251.jpg' }} style={styles.avatar} />
-          <Text style={styles.name}>Sabrina Aryan</Text>
-          <Text style={styles.email}>SabrinaAry208@gmail.com</Text>
-          <TouchableOpacity style={styles.editButton} onPress={() => router.push('/profile')}>
+          <Text style={styles.name}>Sara Araya</Text>
+          <Text style={styles.email}>SaraAraya208@gmail.com</Text>
+          <TouchableOpacity style={styles.editButton} onPress={() => router.push('/edit-profile')}>
             <Text style={styles.editText}>Edit Profile</Text>
           </TouchableOpacity>
         </View>
@@ -25,8 +25,8 @@ export default function ProfileScreen() {
             'Downloads',
             'Languages',
             'Log Out',
-          ].map((item, index) => (
-            <TouchableOpacity key={index} style={styles.menuItem}>
+          ].map((item, profile) => (
+            <TouchableOpacity key={profile} style={styles.menuItem}>
               <Text style={styles.menuText}>{item}</Text>
             </TouchableOpacity>
           ))}
